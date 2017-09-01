@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>InnovIndex</title>
+    {% load static %}
+
+    <script type="text/javascript" src="{% static 'pubmed/js/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pubmed/js/setCharts.js' %}"></script>
+
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script type="text/javascript" src="setCharts.js"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <script type="text/javascript">
+        var endpoint = '/pubmed/api/chart/data';
+
+        var myLabels = [];
+        var myData = [];
+
+        $(document).ready(function() {
+            $.ajax({
+                method: "GET",
+                url: endpoint,
+                success: function(data) {
+                    myLabels1_2 = data.pic1_2_labels
+
+                    myData1 = data.cat1_5_years
+                    myData2 = data.cat2_5_years
+
+                    top_5_cat1_labels = data.cat1_top_5_pubs_labels
+                    top_5_cat1_counts = data.cat1_top_5_pubs_counts
+
+                    top_5_cat2_labels = data.cat2_top_5_pubs_labels
+                    top_5_cat2_counts = data.cat2_top_5_pubs_counts
+
+                    setChart(myLabels1_2, myData1, 'bar', 'ear, nose, throat', ctx)
+                    setChart(myLabels1_2, myData2, 'line', 'rheumatology', ctx2)
+                    setChart(top_5_cat1_labels, top_5_cat1_counts, 'pie', 'top sources for ear, nose, throat', ctx3)
+                    setChart(top_5_cat2_labels, top_5_cat2_counts, 'doughnut', 'top sources for rheumatology', ctx4)
+
+                },
+                error: function(error_data) {
+                    console.log("error");
+                    console.log(error_data);
+                },
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <b>check</b>
+    <b>{% static 'haha'%}</b>
+    <div class="container-fluid text-center">
+        <div class='col-md-12'>
+            <br />
+
+            <div class="row">
+                <div class='col-md-1'></div>
+                <div class='col-md-10'>
+                    <img width="100%"  src="{% static 'pubmed/img/header_img.png' %}">
+                </div>
+                <div class='col-md-1'></div>
+
+            </div>
+            <div class="row">
+                <div class='col-md-1'></div>
+                <div class='col-md-10'>
+                    <h1>Welcome to InnovIndex!</h1>
+                    <br />
+                </div>
+                <div class='col-md-1'></div>
+
+            </div>
+            <div class="row">
+                <div class='col-md-1'></div>
+                <div class='col-md-5 fig'>
+                    <canvas id="myChart" width="350" height="350"></canvas>
+                </div>
+                <div class='col-md-5 fig'>
+                    <canvas id="myChart2" width="350" height="350"></canvas>
+                </div>
+                <div class='col-md-1'></div>
+            </div>
+            <div class="row">
+                <div class='col-md-1'></div>
+                <div class='col-md-5 fig'>
+                    <canvas id="myChart3" height="300"></canvas>
+                </div>
+                <div class='col-md-5 fig'>
+                    <canvas id="myChart4" width="300" height="300"></canvas>
+                </div>
+                <div class='col-md-1'></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var ctx2 = document.getElementById("myChart2").getContext('2d');
+    var ctx3 = document.getElementById("myChart3").getContext('2d');
+    var ctx4 = document.getElementById("myChart4").getContext('2d');
+</script>
+
+</html>

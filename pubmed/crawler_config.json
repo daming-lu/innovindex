@@ -1,0 +1,25 @@
+{
+  "retmax": 500000,
+  "categories": [
+    {
+      "category name": "ear, nose, throat and otolaryngology",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=Ear[mesh]+OR+Nose[mesh]+OR+Throat[mesh]+OR+Otolaryngology[mesh]&usehistory=y&retmode=json",
+      "key words": ["ear", "nose", "throat", "otolaryngology"]
+    },
+    {
+      "category name": "rheumatology and rheumatic diseases",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=RHEUMATOLOGY[mesh]+OR+Rheumatic%20Diseases[Mesh]+OR+Rheumat*[tiab]&usehistory=y&retmode=json",
+      "key words": ["rheumatology", "rheumatic diseases"]
+    },
+    {
+      "category name": "dentistry and oral medicine",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=dentistry[mesh]+OR+oral%medicine[Mesh]&usehistory=y&retmode=json",
+      "key words": ["dentistry", "oral medicine"]
+    },
+    {
+      "category name": "dermatology",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=dermatology[mesh]&usehistory=y&retmode=json",
+      "key words": ["dermatology"]
+    }
+  ]
+}
