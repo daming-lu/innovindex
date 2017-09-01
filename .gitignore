@@ -1,4 +1,5 @@
 *.DS_store
+*.sqlite3
 .idea/
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
