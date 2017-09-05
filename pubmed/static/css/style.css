@@ -16,3 +16,19 @@ li a {
   flex-direction: column;
 }
 
+
+.team-member-card .team-member-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    border-top-left-radius: 200px;
+    border-top-right-radius: 200px;
+    border-bottom-right-radius: 200px;
+    border-bottom-left-radius: 200px;
+    overflow: hidden;
+    margin: 0 auto 34px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-filter: grayscale(100%);
+}

@@ -5,64 +5,12 @@
 
     <title>InnovIndex</title>
     {% load static %}
-    <!--{% if DEBUG %}-->
-        <!--console.log('DEBUG');-->
-    <!--{% else %}-->
-        <!--console.log('NOT DEBUG');-->
-    <!--{% endif %}-->
-
-    <!--{% block js %}-->
-        <!--<script src="{{ STATIC_URL }}js/jquery-3.2.1.min.js"></script>-->
-        <!--<script src="{{ STATIC_URL }}js/setCharts.js"></script>-->
-    <!--{% endblock %}-->
-
     <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/setCharts.js' %}"></script>
-    <!--<script type="text/javascript" src="https://raw.githubusercontent.com/daming-lu/innovindex/master/pubmed/static/js/setCharts.js"></script>-->
-    <!--<script type="text/javascript" src="https://raw.githubusercontent.com/daming-lu/innovindex/master/pubmed/static/js/jquery-3.2.1.min.js"></script>-->
-
-    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-    <!--<script type="text/javascript" src="setCharts.js"></script>-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-    <!--<script type="text/javascript" src="//rf.revolvermaps.com/0/0/1.js?i=57jgtofocte&amp;s=220&amp;m=0&amp;v=false&amp;r=false&amp;b=000000&amp;n=false&amp;c=ff0000" async="async"></script>-->
     <script type="text/javascript">
-        var endpoint = '/pubmed/api/chart/data';
-
-        var myLabels = [];
-        var myData = [];
-
-        $(document).ready(function() {
-            $.ajax({
-                method: "GET",
-                url: endpoint,
-                success: function(data) {
-                    myLabels1_2 = data.pic1_2_labels
-
-                    myData1 = data.cat1_5_years
-                    myData2 = data.cat2_5_years
-
-                    top_5_cat1_labels = data.cat1_top_5_pubs_labels
-                    top_5_cat1_counts = data.cat1_top_5_pubs_counts
-
-                    top_5_cat2_labels = data.cat2_top_5_pubs_labels
-                    top_5_cat2_counts = data.cat2_top_5_pubs_counts
-
-                    setChart(myLabels1_2, myData1, 'bar', 'ear, nose, throat', ctx)
-                    setChart(myLabels1_2, myData2, 'line', 'rheumatology', ctx2)
-                    setChart(top_5_cat1_labels, top_5_cat1_counts, 'pie', 'top sources for ear, nose, throat', ctx3)
-                    setChart(top_5_cat2_labels, top_5_cat2_counts, 'doughnut', 'top sources for rheumatology', ctx4)
-
-                },
-                error: function(error_data) {
-                    console.log("error");
-                    console.log(error_data);
-                },
-            })
-        });
-
         function loadTeam() {
             //window.location.reload('team');
             location.href = "/team";
@@ -70,6 +18,12 @@
         function loadDashboard() {
             //window.location.reload('team');
             location.href = "/";
+        }
+        function loadObservations() {
+            console.log('loadObservations');
+        }
+        function loadReports() {
+            console.log('loadReports');
         }
     </script>
 </head>
@@ -92,7 +46,7 @@
             <div class="row">
                 <div class='col-md-1'></div>
                 <div class='col-md-10'>
-                    <h1>Welcome to InnovIndex!</h1>
+                    <h1>Meet the Team!</h1>
                     <br />
                 </div>
                 <div class='col-md-1'></div>
@@ -131,40 +85,50 @@
                 </div>
                 <div class='col-md-2'></div>
             </div>
+            <br />
             <div class="row">
-                <br />
-                <div class='col-md-1'></div>
-                <div class='col-md-5 fig'>
-                    <canvas id="myChart" width="350" height="350"></canvas>
+                <div class="col-md-4">
+                  <div class="team-member-card show-member-mobile">
+                    <div class="team-member-photo" >
+                        <img width="100%"  src="http://www.avatarsdb.com/avatars/tuxedo_mask.jpg">
+                    </div>
+                    <p>Bill has years of experience in medical area and is a brain behind InnovIndex</p>
+                    <div class="team-member-title">
+                      <h3 class="team-member-name">Bill Xu</h3>
+                      <h4 class="team-member-position">CEO</h4>
+                    </div>
+                  </div>
                 </div>
-                <div class='col-md-5 fig'>
-                    <canvas id="myChart2" width="350" height="350"></canvas>
+                <div class="col-md-4">
+                  <div class="team-member-card show-member-mobile">
+                    <div class="team-member-photo" >
+                        <img width="100%"  src="https://media.licdn.com/media/p/5/000/236/108/2374f47.jpg">
+                    </div>
+                    <p>Jessica is a rock-star data scientist. She likes hiking, biking and diving into massive data</p>
+                    <div class="team-member-title">
+                      <h3 class="team-member-name">Jessica Li</h3>
+                      <h4 class="team-member-position">Chief Data Scientist</h4>
+                    </div>
+                  </div>
                 </div>
-                <!--<form action="{% url 'next_page' %}" method="post">-->
-                    <!--<input type="submit" value="Vote" />-->
-                <!--</form>-->
-                <div class='col-md-1'></div>
-            </div>
-            <div class="row">
-                <div class='col-md-1'></div>
-                <div class='col-md-5 fig'>
-                    <canvas id="myChart3" height="300"></canvas>
+                <div class="col-md-4">
+                  <div class="team-member-card show-member-mobile">
+                    <div class="team-member-photo" >
+                        <img width="100%"  src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/1/005/01c/162/0e5599b.jpg">
+                    </div>
+                    <p>Daming builds web components for InnovIndex and maintains the service.</p>
+                    <div class="team-member-title">
+                      <h3 class="team-member-name">Daming Lu</h3>
+                      <h4 class="team-member-position">Software Engineer</h4>
+                    </div>
+                  </div>
                 </div>
-                <div class='col-md-5 fig'>
-                    <canvas id="myChart4" width="300" height="300"></canvas>
-                </div>
-                <div class='col-md-1'></div>
             </div>
         </div>
     </div>
 
 </body>
 
-<script>
-    var ctx = document.getElementById("myChart").getContext('2d');
-    var ctx2 = document.getElementById("myChart2").getContext('2d');
-    var ctx3 = document.getElementById("myChart3").getContext('2d');
-    var ctx4 = document.getElementById("myChart4").getContext('2d');
-</script>
+
 
 </html>

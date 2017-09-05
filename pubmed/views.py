@@ -15,9 +15,16 @@ from django.http import HttpResponse, JsonResponse
 from .models import Category, Paper
 
 
+# conn = MySQLdb.connect(host="127.0.0.1",
+#                        user="root",  # mysql root
+#                        passwd="root",  # mysql root password
+#                        db="myDB")
+
+
 def index(request):
     print 'index\n!\n'
     context = {'latest_question_list': 'haha'}
+    # import pdb;pdb.set_trace()
     return render(request, 'pubmed/index.html', context)
 
 
@@ -26,7 +33,21 @@ def get_data(request):
         "haha": 168,
         "hao": 123,
     }
+    context = {'latest_question_list': 'haha'}
+
     return JsonResponse(data)
+    # return render(request, 'pubmed/index.html', context)
+
+
+def get_team(request):
+    data = {
+        "team": 168,
+        "hao": 123,
+    }
+    print 'team\n!\n'
+    context = {'latest_question_list': 'haha'}
+    return render(request, 'pubmed/team.html', context)
+    # return render(request, 'pubmed/index.html', context)
 
 
 class ChartData(APIView):
@@ -84,4 +105,5 @@ class ChartData(APIView):
             'cat2_top_5_pubs_labels': cat2_top_5_pubs_labels,
             'cat2_top_5_pubs_counts': cat2_top_5_pubs_amt,
         }
+        # data = {}
         return Response(data)
