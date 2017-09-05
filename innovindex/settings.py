@@ -80,14 +80,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
-    'mysql_db': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'myDB',  # your mysql database name
-        'USER': 'innovindex', # your mysql user for the database
-        'PASSWORD': 'innovindex2017', # password for user
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
+    # 'mysql_db': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'myDB',  # your mysql database name
+    #     'USER': 'innovindex', # your mysql user for the database
+    #     'PASSWORD': 'innovindex2017', # password for user
+    #     'HOST': '127.0.0.1',
+    #     'PORT': '3306',
+    # }
 }
 
 print 'db_path:', os.path.join(BASE_DIR, 'db.sqlite3')
