@@ -1,0 +1,48 @@
+Bacterial Infections and Mycoses;C01;1321673
+Bacteremia;C01.252.100;40317
+Hemorrhagic Septicemia;C01.252.100.375;1137
+Central Nervous System Bacterial Infections;C01.252.200;30272
+Lyme Neuroborreliosis;C01.252.200.450;1183
+Meningitis, Bacterial;C01.252.200.500;32211
+Meningitis, Escherichia coli;C01.252.200.500.400;1740
+Meningitis, Haemophilus;C01.252.200.500.450;4224
+Meningitis, Listeria;C01.252.200.500.500;1380
+Meningitis, Meningococcal;C01.252.200.500.550;6818
+Waterhouse-Friderichsen Syndrome;C01.252.200.500.550.800;509
+Meningitis, Pneumococcal;C01.252.200.500.600;5171
+Tuberculosis, Meningeal;C01.252.200.500.800;7041
+Neurosyphilis;C01.252.200.750;4105
+Endocarditis, Bacterial;C01.252.300;23884
+Endocarditis, Subacute Bacterial;C01.252.300.407;2766
+Eye Infections, Bacterial;C01.252.354;14599
+Conjunctivitis, Bacterial;C01.252.354.225;6978
+Conjunctivitis, Inclusion;C01.252.354.225.250;1003
+Ophthalmia Neonatorum;C01.252.354.225.625;785
+Trachoma;C01.252.354.225.800;4687
+Hordeolum;C01.252.354.400;163
+Keratoconjunctivitis, Infectious;C01.252.354.450;627
+Tuberculosis, Ocular;C01.252.354.800;1836
+Uveitis, Suppurative;C01.252.354.900;358
+Panophthalmitis;C01.252.354.900.675;476
+Fournier Gangrene;C01.252.377;855
+Aliivibrio Infections;C01.252.400.050;28
+Anaplasmataceae Infections;C01.252.400.054;4129
+Anaplasmosis;C01.252.400.054.050;2122
+Ehrlichiosis;C01.252.400.054.160;3013
+Heartwater Disease;C01.252.400.054.160.400;504
+Bacteroidaceae Infections;C01.252.400.110;3600
+Bacteroides Infections;C01.252.400.110.109;4938
+Bartonellaceae Infections;C01.252.400.126;3604
+Bartonella Infections;C01.252.400.126.100;3886
+Angiomatosis, Bacillary;C01.252.400.126.100.050;678
+Cat-Scratch Disease;C01.252.400.126.100.150;2313
+Trench Fever;C01.252.400.126.100.800;322
+Bordetella Infections;C01.252.400.143;9147
+Whooping Cough;C01.252.400.143.740;8677
+Borrelia Infections;C01.252.400.155;12035
+Lyme Disease;C01.252.400.155.569;12186
+Erythema Chronicum Migrans;C01.252.400.155.569.200;943
+Lyme Neuroborreliosis;C01.252.400.155.569.600;1183
+Relapsing Fever;C01.252.400.155.644;1935
+Brucellosis;C01.252.400.167;13308
+Brucellosis, Bovine;C01.252.400.167.322;2296
