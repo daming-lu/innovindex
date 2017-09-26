@@ -50,7 +50,7 @@ def insert_to_db(row):
     except Exception as e:
         print 'error while inserting: '
         print e
-        import pdb;pdb.set_trace()
+        # import pdb;pdb.set_trace()
         PrintException()
         return
         # connection.close()
@@ -60,9 +60,9 @@ def insert_uid_category(uid, category):
     try:
         with connection.cursor() as cursor:
             # Create a new record
-            sql = "INSERT INTO `category_uid` (`uid`, `category`) " + \
+            sql = "INSERT INTO `category_uid_ad_abs` (`uid`, `category`) " + \
                     "VALUES (%s, %s)"
-            sql_data = ( uid, category)
+            sql_data = (uid, category)
 
             cursor.execute(sql, sql_data)
         connection.commit()
@@ -73,13 +73,42 @@ def insert_uid_category(uid, category):
 
 
 def get_medline_ad(uid):
-    url = 'https://www.ncbi.nlm.nih.gov/pubmed/' + uid + '?report=medline'
-    response = urllib.urlopen(url)
-    medline_uid = response.read()
-    import pdb;pdb.set_trace()
-    if 'AD  - ' in medline_uid:
-        return 'Has AD'
-    return 'No AD'
+    try:
+        url = 'https://www.ncbi.nlm.nih.gov/pubmed/' + uid + '?report=medline'
+        response = urllib.urlopen(url)
+        medline_uid = response.read()
+        lines = medline_uid.split('\n')
+        ADs = ""
+        for line in lines:
+            if line[0:6] == 'AD  - ':
+                ADs += line[6:] + ' | '
+
+        if len(ADs) > 5000:
+            ADs = ADs[0:5000]
+        return unidecode(ADs)
+    except:
+        PrintException()
+        return ''
+
+
+def get_abstract(uid):
+    try:
+        abs_base_url = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=text&rettype=abstract&id='
+        abs_url = abs_base_url + uid
+        response = urllib.urlopen(abs_url)
+        abs_response = response.read()
+
+        if len(abs_response) > 5000:
+            abs_response = abs_response[0:5000]
+
+        if isinstance(abs_response, str):
+            input_string = abs_response.decode('ascii', 'ignore').encode('ascii')
+        elif isinstance(abs_response, unicode):
+            input_string = abs_response.encode('ascii', 'ignore')
+        return input_string
+    except:
+        PrintException()
+        return ''
 
 
 def query_one_paper(uids, category):
@@ -205,7 +234,6 @@ def query_one_paper(uids, category):
             row['recordstatus'] = ''
             if 'recordstatus' in cur_paper:
                 row['recordstatus'] = unidecode(cur_paper['recordstatus'])
-                # row = row[:1023]
 
             # pubstatus
             row['pubstatus'] = ''
@@ -223,7 +251,6 @@ def query_one_paper(uids, category):
             row['fulljournalname'] = ''
             if 'fulljournalname' in cur_paper:
                 row['fulljournalname'] = unidecode(cur_paper['fulljournalname'])
-                # row = row[:1023]
 
             # sortfirstauthor
             row['sortfirstauthor'] = ''
@@ -243,18 +270,15 @@ def query_one_paper(uids, category):
             if 'vernaculartitle' in cur_paper:
                 row['vernaculartitle'] = unidecode(cur_paper['vernaculartitle'])
 
-
             row['medline_ad'] = get_medline_ad(uid)
+            row['abstract'] = get_abstract(uid)
 
             insert_to_db(row)
         except Exception as e:
             print 'error while building row'
             print e.message
-            # import pdb; pdb.set_trace()
             PrintException()
             continue
-
-    print 'inserted ', len(uids)
 
 total_count = 0
 line_cnt = 0
@@ -267,13 +291,13 @@ with open('all_count_all_year.txt','w') as out_fp:
                     continue
                 category = pieces[1].strip()
                 url = url_prefix + pieces[0] + '+2015:2016[pdat]' + '&retmode=json'
-                print 'url: ', url
+                # print 'url: ', url
                 response = urllib.urlopen(url)
                 metadata = response.read()
                 metadata = json.loads(metadata)
 
                 cur_total_count = metadata['esearchresult']['count']
-                print category, " + ", cur_total_count
+                # print category, " + ", cur_total_count
                 url = url_prefix + pieces[0] + '+2015:2016[pdat]' + '&retmode=json' + '&retmax=' + cur_total_count
                 response = urllib.urlopen(url)
                 metadata = response.read()
@@ -287,13 +311,13 @@ with open('all_count_all_year.txt','w') as out_fp:
                     uids = idlist[start_idx:end]
                     start_idx = end
                     query_one_paper(uids, category)
-
+                    # break
 
                 to_write = line.rstrip() + ';'+cur_total_count+'\n'
                 total_count += int(cur_total_count)
                 out_fp.write(to_write)
                 line_cnt += 1
-
+                # break
             except:
                 continue
 print 'total_count: ', total_count
