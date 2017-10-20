@@ -88,7 +88,6 @@ def get_medline_ad(uid):
                 else:
                     address_begin = 'false'
                     ADs += ' | '
-                    continue
             if line[0:6] == 'AD  - ':
                 address_begin = 'true'
                 ADs += line[6:] + ' '
