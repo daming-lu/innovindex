@@ -79,9 +79,19 @@ def get_medline_ad(uid):
         medline_uid = response.read()
         lines = medline_uid.split('\n')
         ADs = ""
+        address_begin = 'false'
         for line in lines:
+            if address_begin == 'true':
+                if line[0:6] == '      ':
+                    ADs += line[6:] + ' '
+                    continue
+                else:
+                    address_begin = 'false'
+                    ADs += ' | '
+                    continue
             if line[0:6] == 'AD  - ':
-                ADs += line[6:] + ' | '
+                address_begin = 'true'
+                ADs += line[6:] + ' '
 
         if len(ADs) > 5000:
             ADs = ADs[0:5000]
